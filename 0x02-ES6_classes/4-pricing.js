@@ -1,45 +1,51 @@
-import Currency from "./3-currency";
+/* eslint-disable no-underscore-dangle */
+import Currency from './3-currency';
 
- class Pricing{
-    constructor(amount,currency){
-        if (typeof amount !== 'number') {
-            throw new TypeError('Amount must be a number.');
-        }
-        if (!(currency instanceof Currency)) {
-            throw new TypeError('Currency must be an instance of the Currency class.');
-        }
-        this._amount = amount;
-        this._currency = currency;
-    }
-    get amount(){
-        return this._amount;
-    }
-    set amount(amount){
-        if(typeof amount === 'number'){
-            this._amount = amount;
-        }
-        else{
-            throw new TypeError("Amount must be number.")
-        }
-    }
-    get currency(){
-        return this._currency;
-    }
-    set currency(currency){
-        if( currency  instanceof Currency){
-            this._currency = currency;
-        }
-        else{
-            throw new TypeError("Currency must be number.")
-        }
-    }
-    displayFullPrice(){
-        return `${this._amount} ${this._currency._name} (${this.currency._code})`;
-    }
-    static convertPrice(amount,conversionRate){
-        if (typeof amount !== 'number' || typeof conversionRate !== 'number') {
-            throw new TypeError('Both amount and conversion rate must be numbers.');
-        }
-        return amount * conversionRate;
-    }
+export default class Pricing {
+/**
+ * @param {number} amount - amount of money
+ * @param {string} currency - currency
+ *
+ * Implement getters and setters for each
+ */
+constructor(amount, currency) {
+this.amount = amount;
+this.currency = currency;
+}
+
+get amount() {
+return this._amount;
+}
+
+set amount(value) {
+if (typeof value !== 'number') {
+    throw new TypeError('amount must be a number');
+}
+this._amount = value;
+}
+
+get currency() {
+return this._currency;
+}
+
+set currency(value) {
+if (!(value instanceof Currency)) {
+    throw new TypeError('currency must be a Currency');
+}
+this._currency = value;
+}
+
+displayFullPrice() {
+return `${this.amount} ${this.currency.name} (${this.currency.code})`;
+}
+
+static convertPrice(amount, conversionRate) {
+if (typeof amount !== 'number') {
+    throw new TypeError('amount must be a number');
+}
+if (typeof conversionRate !== 'number') {
+    throw new TypeError('conversionRate must be a number');
+}
+return amount * conversionRate;
+}
 }

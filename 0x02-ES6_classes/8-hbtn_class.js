@@ -1,32 +1,37 @@
-class HolbertonClass{
-constructor(size, location){
-    if(typeof size !== 'string'){
-        throw new TypeError("Size should be number.");
-
+/* eslint-disable no-underscore-dangle */
+export default class HolbertonClass {
+    /**
+     * @param {number} size - no of students in class
+     * @param {string} location - location of class
+     */
+    constructor(size, location) {
+      this.size = size;
+      this.location = location;
     }
-    if( typeof location !== 'string'){
-        throw new TypeError("Location should be string.");
+  
+    get size() {
+      return this._size;
     }
-    this._size = size;
-    this._location = location;
-}
-
-get size() {
-    return this._size;
+  
+    set size(value) {
+      this._size = value;
     }
-
-    // Getter for location
+  
     get location() {
-    return this._location;
+      return this._location;
     }
-
-    // Override valueOf to return size
-    valueOf() {
-    return this._size;
+  
+    set location(value) {
+      this._location = value;
     }
-
-    // Override toString to return location
-    toString() {
-    return this._location;
+  
+    [Symbol.toPrimitive](hint) {
+      if (hint === 'number') {
+        return this.size;
+      }
+      if (hint === 'string') {
+        return this.location;
+      }
+      return this;
     }
-}
+  }

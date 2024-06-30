@@ -1,16 +1,26 @@
-class Building{
-    constructor(sqft){
-        if (typeof sqft !== 'number') {
-            throw new TypeError('Square footage must be a number');
-        }
-        this._sqft = sqft;
+/* eslint-disable no-underscore-dangle */
+export default class Building {
+/**
+ * @param {number} sqft - size of building
+ *
+ * Implement a getter and setter for sqft
+ */
+constructor(sqft) {
+    this.sqft = sqft;
+    if (this.constructor !== Building) {
+    if (typeof this.evacuationWarningMessage !== 'function') {
+        throw new Error(
+        'Class extending Building must override evacuationWarningMessage',
+        );
     }
-    get sqft(){
-        return this._sqft;
-    }
-    evacuationWarningMessage(){
-        throw new Error('Class extending Building must override evacuationWarningMessage');
-    
     }
 }
-export default Building;
+
+get sqft() {
+    return this._sqft;
+}
+
+set sqft(value) {
+    this._sqft = value;
+}
+}

@@ -1,45 +1,39 @@
-// /alx-backend-javascript/0x02-ES6_classes/3-currency.js
-
-export default  class Currency {
+/* eslint-disable no-underscore-dangle */
+export default class Currency {
+/**
+ * @param {string} code - currency code
+ * @param {string} name - currency name
+ *
+ * Implement getters and setters for each
+ */
 constructor(code, name) {
-    if (typeof code !== 'string' || typeof name !== 'string') {
-    throw new TypeError('Both code and name must be strings.');
-    }
-    this._code = code;
-    this._name = name;
+    this.code = code;
+    this.name = name;
 }
 
-// Getter for code
 get code() {
     return this._code;
 }
 
-// Setter for code
-set code(code) {
-    if (typeof code === 'string') {
-    this._code = code;
-    } else {
-    throw new TypeError('Code must be a string.');
+set code(value) {
+    if (typeof value !== 'string') {
+    throw new Error('code must be a string');
     }
+    this._code = value;
 }
 
-// Getter for name
 get name() {
     return this._name;
 }
 
-// Setter for name
-set name(name) {
-    if (typeof name === 'string') {
-    this._name = name;
-    } else {
-    throw new TypeError('Name must be a string.');
+set name(value) {
+    if (typeof value !== 'string') {
+    throw new Error('name must be a string');
     }
+    this._name = value;
 }
 
-// Method to display the full currency
 displayFullCurrency() {
-    return `${this._name} (${this._code})`;
+    return `${this.name} (${this.code})`;
 }
 }
-

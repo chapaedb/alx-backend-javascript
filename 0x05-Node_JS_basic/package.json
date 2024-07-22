@@ -1,0 +1,12 @@
+{
+  "name": "0x05-node_js_basic",
+  "version": "1.0.0",
+  "description": "0x05. NodeJS Basics\r Back-end\r JavaScript\r ES6\r NodeJS\r ExpressJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

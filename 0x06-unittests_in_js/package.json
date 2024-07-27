@@ -1,15 +1,14 @@
 {
   "name": "0x06-unittests_in_js",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+"test": "mocha"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "mocha": "^10.7.0"
-  },
-  "keywords": [],
-  "description": ""
+  }
 }

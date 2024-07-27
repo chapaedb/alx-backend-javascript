@@ -1,29 +1,29 @@
-const mocha = require('mocha');
-const { expect } = require('chai');
 const sinon = require('sinon');
-
+const { expect } = require('chai');
 const sendPaymentRequestToApi = require('./5-payment');
 
 describe('sendPaymentRequestToApi', () => {
-  let spy;
+  let bigBrother;
 
   beforeEach(() => {
-    spy = sinon.spy(console, 'log');
+    if (!bigBrother) {
+      bigBrother = sinon.spy(console);
+    }
   });
 
   afterEach(() => {
-    spy.restore();
+    bigBrother.log.resetHistory();
   });
 
-  it('should log 120 if a = 100 and b = 20', () => {
+  it('sendPaymentRequestToApi(100, 20) logs "The total is: 120" to the console', () => {
     sendPaymentRequestToApi(100, 20);
-    expect(spy.calledOnceWithExactly('The total is: 120')).to.be.true;
-    expect(spy.calledOnce).to.be.true;
+    expect(bigBrother.log.calledWith('The total is: 120')).to.be.true;
+    expect(bigBrother.log.calledOnce).to.be.true;
   });
 
-  it('should log 20 if a = 10 and b = 10', () => {
+  it('sendPaymentRequestToApi(10, 10) logs "The total is: 20" to the console', () => {
     sendPaymentRequestToApi(10, 10);
-    expect(spy.calledOnceWithExactly('The total is: 20')).to.be.true;
-    expect(spy.calledOnce).to.be.true;
+    expect(bigBrother.log.calledWith('The total is: 20')).to.be.true;
+    expect(bigBrother.log.calledOnce).to.be.true;
   });
 });

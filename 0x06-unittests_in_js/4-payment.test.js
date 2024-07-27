@@ -1,25 +1,20 @@
-const mocha = require('mocha');
-const { expect, assert } = require('chai');
 const sinon = require('sinon');
-
-const utils = require('./utils');
-const sendPaymentRequestToApi = require('./3-payment');
-const { spy } = require('sinon');
+const Utils = require('./utils');
+const { expect } = require('chai');
+const sendPaymentRequestToApi = require('./4-payment');
 
 describe('sendPaymentRequestToApi', () => {
-  it('should call calculateNumber', () => {
-    const stub = sinon.stub(utils, 'calculateNumber');
-    stub.returns(10);
+  it('sendPaymentRequestToApi calls console.log with the right arguments', () => {
+    const bigBrother = sinon.spy(console);
+    const dummy = sinon.stub(Utils, 'calculateNumber');
 
-    const spy = sinon.spy(console, 'log');
-
-    const apiRequestRes = sendPaymentRequestToApi(100, 20);
-
-    expect(stub.calledOnceWithExactly('SUM', 100, 20)).to.equal(true);
-    expect(spy.calledOnceWithExactly('The total is: 10'));
-    expect(utils.calculateNumber('SUM', 100, 20)).to.equal(apiRequestRes);
-
-    stub.restore();
-    spy.restore();
+    dummy.returns(10);
+    sendPaymentRequestToApi(100, 20);
+    expect(dummy.calledWith('SUM', 100, 20)).to.be.true;
+    expect(dummy.callCount).to.be.equal(1);
+    expect(bigBrother.log.calledWith('The total is: 10')).to.be.true;
+    expect(bigBrother.log.callCount).to.be.equal(1);
+    dummy.restore();
+    bigBrother.log.restore();
   });
 });
